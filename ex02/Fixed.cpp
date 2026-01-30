@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
+/*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:54:20 by dmaestro          #+#    #+#             */
-/*   Updated: 2026/01/27 19:29:40 by dmaestro         ###   ########.fr       */
+/*   Updated: 2026/01/30 15:38:07 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,36 @@ float Fixed::toFloat() const
 }
 Fixed& Fixed::operator+(const Fixed& other)
 {
-    Fixed* result = new Fixed();
-    result->setRawBits(this->getRawBits() + other.getRawBits());
-    return(*result);
+    Fixed result;
+    Fixed *aux;
+    *aux = other;  
+    result = Fixed();
+    result.setRawBits(this->getRawBits() + aux->getRawBits());
 }
+Fixed& Fixed::operator*(const Fixed& other)
+{
+    Fixed result;
+    Fixed *aux;
+    *aux = other;  
+    result = Fixed();
+    result.setRawBits(this->getRawBits() * aux->getRawBits());
+}
+
+Fixed& Fixed::operator-(const Fixed& other)
+{
+    Fixed result;
+    Fixed *aux;
+    *aux = other;  
+    result = Fixed();
+    result.setRawBits(this->getRawBits() - aux->getRawBits());
+}
+
+Fixed& Fixed::operator*(const Fixed& other)
+{
+    Fixed result;
+    Fixed *aux;
+    *aux = other;  
+    result = Fixed();
+    result.setRawBits(this->getRawBits() / aux->getRawBits());
+}
+
