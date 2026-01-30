@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:54:20 by dmaestro          #+#    #+#             */
-/*   Updated: 2026/01/30 15:38:07 by dmaestro         ###   ########.fr       */
+/*   Updated: 2026/01/30 17:52:15 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Fixed::Fixed(float value)
     return(*this);
 }
 
-int Fixed::getRawBits()
+int Fixed::getRawBits() const
 {
     std::cout << "getRawBits member function called" << std::endl;
     return(this->value);
@@ -85,34 +85,158 @@ Fixed& Fixed::operator+(const Fixed& other)
 {
     Fixed result;
     Fixed *aux;
+    aux = new Fixed();
     *aux = other;  
     result = Fixed();
     result.setRawBits(this->getRawBits() + aux->getRawBits());
+    delete aux;
+    return(result);
 }
 Fixed& Fixed::operator*(const Fixed& other)
 {
     Fixed result;
     Fixed *aux;
+    aux = new Fixed();
     *aux = other;  
     result = Fixed();
     result.setRawBits(this->getRawBits() * aux->getRawBits());
+    delete aux;
+    return(result);
 }
 
 Fixed& Fixed::operator-(const Fixed& other)
 {
     Fixed result;
     Fixed *aux;
+    aux = new Fixed();
     *aux = other;  
     result = Fixed();
     result.setRawBits(this->getRawBits() - aux->getRawBits());
+    delete aux;
+    return(result);
 }
 
 Fixed& Fixed::operator*(const Fixed& other)
 {
     Fixed result;
     Fixed *aux;
+    aux = new Fixed();
     *aux = other;  
     result = Fixed();
     result.setRawBits(this->getRawBits() / aux->getRawBits());
+    delete aux;
+    return result;
 }
+Fixed& Fixed::operator--()
+{
+    this->setRawBits(this->getRawBits() - (1 + EPSILON));
+}
+Fixed& Fixed::operator++()
+{
+    this->setRawBits(this->getRawBits() + (1 + EPSILON));
+}
+
+Fixed Fixed::operator--(int)
+{
+    this->setRawBits(this->getRawBits() - (1 + EPSILON));
+}
+
+Fixed Fixed::operator++(int)
+{ 
+    this->setRawBits(this->getRawBits() - (1 + EPSILON));
+}
+
+bool   Fixed::operator==(const Fixed& fixed)
+{
+    
+    if(this->getRawBits() == fixed.getRawBits())
+        return(true);
+    else 
+        return(false);
+}
+bool   Fixed::operator>=(const Fixed& fixed)
+{
+    
+    if(this->getRawBits() >= fixed.getRawBits())
+        return(true);
+    else 
+        return(false);
+}
+bool   Fixed::operator<=(const Fixed& fixed)
+{
+    
+    if(this->getRawBits() <= fixed.getRawBits())
+        return(true);
+    else 
+        return(false);
+}
+
+bool   Fixed::operator<(const Fixed& fixed)
+{
+    
+    if(this->getRawBits() < fixed.getRawBits())
+        return(true);
+    else 
+        return(false);
+}
+
+bool   Fixed::operator>(const Fixed& fixed)
+{
+    
+    if(this->getRawBits() > fixed.getRawBits())
+        return(true);
+    else 
+        return(false);
+}
+
+bool   Fixed::operator!=(const Fixed& fixed)
+{
+    
+    if(this->getRawBits() != fixed.getRawBits())
+        return(true);
+    else 
+        return(false);
+}
+ Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+    Fixed result;
+
+    if(&a > &b)
+        result = a;
+    else
+        result = b;
+        return(result);
+}
+ Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+    Fixed result;
+
+    if(&a < &b)
+        result = a;
+    else
+        result = b;
+        return(result);
+}
+Fixed Fixed::max(Fixed a, Fixed b)
+{
+    Fixed result;
+
+    if(&a > &b)
+        return(a);
+    else
+        return(b);
+}
+
+Fixed Fixed::min(Fixed a, Fixed b)
+{
+    Fixed result;
+
+    if(&a > &b)
+        return(a);
+    else
+        return(b);
+}
+
+
+
 
