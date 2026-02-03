@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:54:20 by dmaestro          #+#    #+#             */
-/*   Updated: 2026/01/27 19:17:03 by dmaestro         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:53:00 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ float Fixed::toFloat() const
     aux2 = this->value;
     aux = this->fractional_bits;
     result = aux2 / (1 << (int)aux);
-    return(result);
-    
+    return(result);   
 }

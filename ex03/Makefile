@@ -2,7 +2,7 @@ NAME = a.out
 
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -g
-CFILES = main.cpp  Fixed.cpp 
+CFILES = main.cpp  Fixed.cpp Point.cpp
 
 OBJECTS = $(CFILES:.cpp=.o)
 

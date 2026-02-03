@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/27 16:17:27 by dmaestro          #+#    #+#             */
-/*   Updated: 2026/02/02 19:40:37 by dmaestro         ###   ########.fr       */
+/*   Created: 2026/02/02 20:24:05 by dmaestro          #+#    #+#             */
+/*   Updated: 2026/02/02 20:34:08 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#ifndef POINT_H
+#define POINT_H
+#include "Point.hpp"
 
-int main( void ) 
-{
-Fixed a;
-Fixed  const b( (Fixed( 5.05f ) * Fixed( 2 )));
-std::cout << a << std::endl;
-std::cout << ++a << std::endl;
-std::cout << a << std::endl;
-std::cout << a++ << std::endl;
-std::cout << a << std::endl;
-std::cout << b << std::endl;
-std::cout << Fixed::max( a, b ) << std::endl;
-return 0;
-}
+bool bsp( Point const a, Point const b, Point const c, Point const point);
+
+#endif
+
