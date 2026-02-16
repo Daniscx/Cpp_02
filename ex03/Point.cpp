@@ -6,7 +6,7 @@
 /*   By: dmaestro <dmaestro@student.42madrid.con    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:03:44 by dmaestro          #+#    #+#             */
-/*   Updated: 2026/02/03 17:25:57 by dmaestro         ###   ########.fr       */
+/*   Updated: 2026/02/16 16:45:02 by dmaestro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,55 @@ Point Point::operator=(const Point& other)
     (Fixed)this->y = other.y;
     return(*this);
 }
+static bool is_the_point_in_the_lines(Point const& a, Point const& b, Point const& c, Point const& point)
+{
+    Fixed m;
+    Fixed m2;
+    Fixed m3;
+    Fixed SecurityBreach;
+    std::cout << c.getX() << std::endl;
+    
+    SecurityBreach = a.getX() - b.getX();
+    if(SecurityBreach == Fixed(0))
+    {
+        if(SecurityBreach == point.getX())
+            return(false);
+        else
+            return(true);
+    }
+    m = (a.getY() - b.getY()) / SecurityBreach;
+    if(point.getY() == (m*(point.getX()) + point.getX()))
+        return(false);
+    SecurityBreach = c.getX() - b.getX();
+    if(SecurityBreach == Fixed(0))
+    {
+        if(SecurityBreach == point.getX())
+            return(false);
+        else
+            return(true);
+    }
+    m2 = (c.getY() - b.getY()) / SecurityBreach;
+    if(point.getY() == (m2*(point.getX()) + point.getX()))
+              return(false);
+    SecurityBreach = a.getX() - c.getX();
+    if(SecurityBreach == Fixed(0))
+    {
+        if(SecurityBreach == point.getX())
+            return(false);
+        else
+            return(true);
+    }
+    m3 = ((a.getY() - c.getY()) / SecurityBreach);
+
+    if(point.getY() == (m3*(point.getX()) + point.getX()))
+        return(false);
+    
+    return(true);
+}
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
-    std::cout << "values of a are" << a.getX() << " " << a.getY() << std::endl;
-    std::cout << "values of b are" << b.getX() << " " << b.getY() << std::endl;
-    std::cout << "values of c are" << c.getX() << " " << c.getY() << std::endl;
-    std::cout << "values of point are" << point.getX() << " " << point.getY() << std::endl;
+    if(!is_the_point_in_the_lines(a, b, c, point))
+        return(false);
     Fixed area_abc = getArea(a, b, c);
     std::cout << "Area abc: " << area_abc << std::endl;
     Fixed area_pab = getArea(point, a, b);
